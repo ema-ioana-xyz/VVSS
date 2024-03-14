@@ -69,31 +69,19 @@ public class TaskIO {
             dataInputStream.close();
         }
     }
-    public static void writeBinary(TaskList tasks, File file)throws IOException{
-        FileOutputStream fos = null;
-        try {
-            fos = new FileOutputStream(file);
-            write(tasks,fos);
-        }
-        catch (IOException e){
+    public static void writeBinary(TaskList tasks, File file) {
+        try (FileOutputStream fos = new FileOutputStream(file)) {
+            write(tasks, fos);
+        } catch (IOException e) {
             log.error("IO exception reading or writing file");
-        }
-        finally {
-            fos.close();
         }
     }
 
-    public static void readBinary(TaskList tasks, File file) throws IOException{
-        FileInputStream fis = null;
-        try {
-            fis = new FileInputStream(file);
+    public static void readBinary(TaskList tasks, File file) {
+        try (FileInputStream fis = new FileInputStream(file)) {
             read(tasks, fis);
-        }
-        catch (IOException e){
+        } catch (IOException e) {
             log.error("IO exception reading or writing file");
-        }
-        finally {
-            fis.close();
         }
     }
     public static void write(TaskList tasks, Writer out) throws IOException {
@@ -293,11 +281,6 @@ public class TaskIO {
         for (Task t : tasksList){
             taskList.add(t);
         }
-        try {
-            TaskIO.writeBinary(taskList, Main.savedTasksFile);
-        }
-        catch (IOException e){
-            log.error("IO exception reading or writing file");
-        }
+        TaskIO.writeBinary(taskList, Main.savedTasksFile);
     }
 }
