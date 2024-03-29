@@ -51,8 +51,19 @@ public class ArrayTaskList extends TaskList{
     }
 
     @Override
-    public void add(Task task){
-        if (task.equals(null)) throw new NullPointerException("Task shouldn't be null");
+    public void add(Task task) {
+        if (task == null) {
+            throw new NullPointerException("Task shouldn't be null");
+        }
+
+        if (task.getTitle() == null || task.getTitle().isEmpty()) {
+            throw new IllegalArgumentException("Task title is null or empty");
+        }
+
+        if (task.getStartTime().after(task.getEndTime())) {
+            throw new IllegalArgumentException("Task start time is after end time");
+        }
+
         if (numberOfTasks == currentCapacity-1){
             currentCapacity = currentCapacity * 2;
             Task[] withAddedTask = new Task[currentCapacity];

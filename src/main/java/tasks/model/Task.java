@@ -22,6 +22,7 @@ public class Task implements Serializable, Cloneable {
     public static SimpleDateFormat getDateFormat(){
         return sdf;
     }
+
     public Task(String title, Date time){
         if (time.getTime() < 0) {
             log.error("time below bound");
@@ -119,7 +120,7 @@ public class Task implements Serializable, Cloneable {
         }
         return null;
     }
-    //duplicate methods for TableView which sets column
+    // duplicate methods for TableView which sets column
     // value by single method and doesn't allow passing parameters
     public String getFormattedDateStart(){
         return sdf.format(start);
