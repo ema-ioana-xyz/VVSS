@@ -127,17 +127,22 @@ public class Controller {
             log.error("error loading task-info.fxml");
         }
     }
+
+
     @FXML
     public void showFilteredTasks(){
-        Date start = getDateFromFilterField(datePickerFrom.getValue(), fieldTimeFrom.getText());
-        Date end = getDateFromFilterField(datePickerTo.getValue(), fieldTimeTo.getText());
+        Date start, end;
 
-        Iterable<Task> filtered =  service.filterTasks(start, end);
+        start = getDateFromFilterField(datePickerFrom.getValue(), fieldTimeFrom.getText());
+        end = getDateFromFilterField(datePickerTo.getValue(), fieldTimeTo.getText());
+
+        Iterable<Task> filtered =  service.filterTasks(tasksList, start, end);
 
         ObservableList<Task> observableTasks = FXCollections.observableList((ArrayList)filtered);
         tasks.setItems(observableTasks);
         updateCountLabel(observableTasks);
     }
+
     private Date getDateFromFilterField(LocalDate localDate, String time){
         Date date = dateService.getDateValueFromLocalDate(localDate);
         return dateService.getDateMergedWithTime(time, date);

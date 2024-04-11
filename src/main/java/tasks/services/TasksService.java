@@ -2,16 +2,18 @@ package tasks.services;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import org.apache.log4j.Logger;
 import tasks.model.ArrayTaskList;
 import tasks.model.Task;
-import tasks.model.TasksOperations;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 
 public class TasksService {
 
     private ArrayTaskList tasks;
+    private static final Logger log = Logger.getLogger(TasksService.class.getName());
 
     public TasksService(ArrayTaskList tasks){
         this.tasks = tasks;
@@ -45,11 +47,21 @@ public class TasksService {
         return result;
     }
 
-    public Iterable<Task> filterTasks(Date start, Date end){
-        TasksOperations tasksOps = new TasksOperations(getObservableList());
-        Iterable<Task> filtered = tasksOps.incoming(start,end);
-        //Iterable<Task> filtered = tasks.incoming(start, end);
-
-        return filtered;
+    public Iterable<Task> filterTasks(ObservableList<Task> tasks, Date start, Date end){
+        log.info("TaskService: filterTasks() called with parameters tasks=" + tasks + "start=" +start+" end="+end);
+        ArrayList<Task> incomingTasks = new ArrayList<>();
+        if (!end.before(start)){
+            for (int i=0; i<tasks.size(); i++) {
+                Task currentTask = tasks.get(i);
+                Date nextTime = currentTask.nextTimeAfter(start);
+                if (nextTime != null) {
+                    if (nextTime.before(end) || nextTime.equals(end)) {
+                        incomingTasks.add(currentTask);
+                        log.info(currentTask.getTitle() + "with start=" + currentTask.getFormattedDateStart() + "selected");
+                    }
+                }
+            }
+        }
+        return incomingTasks;
     }
 }
