@@ -16,6 +16,8 @@ public class TaskIntegrationTest {
 
     @BeforeEach
     void setUp() {
+        taskList = new ArrayTaskList();
+        tasksService = new TasksService(taskList);
     }
 
     @Test
