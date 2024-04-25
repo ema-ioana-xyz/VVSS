@@ -22,7 +22,7 @@ class TaskTest {
     @DisplayName("Add Valid Task ECP")
     @Order(1)
     void testEPC_0() throws ParseException {
-        var task = new Task(
+        Task task = new Task(
                 "Acesta este un task valid",
                 Task.getDateFormat().parse("2024-03-29 10:10"),
                 Task.getDateFormat().parse("2024-03-30 10:10"),
@@ -40,7 +40,7 @@ class TaskTest {
     @DisplayName("Add Invalid Task ECP 1")
     @Order(2)
     void testEPC_1() throws ParseException {
-        var task = new Task(
+        Task task = new Task(
                 null,
                 Task.getDateFormat().parse("2024-03-29 10:10"),
                 Task.getDateFormat().parse("2024-03-30 10:10"),
@@ -55,7 +55,7 @@ class TaskTest {
     @DisplayName("Add Invalid Task ECP 2")
     @Order(3)
     void testEPC_2() throws ParseException {
-        var task = new Task(
+        Task task = new Task(
                 "",
                 Task.getDateFormat().parse("2024-03-29 10:10"),
                 Task.getDateFormat().parse("2024-03-30 10:10"),
@@ -70,7 +70,7 @@ class TaskTest {
     @DisplayName("Add Invalid Task ECP 3")
     @Order(4)
     void testEPC_3() throws ParseException {
-        var task = new Task(
+        Task task = new Task(
                 "Un titlu",
                 Task.getDateFormat().parse("2024-03-29 10:10"),
                 Task.getDateFormat().parse("2022-01-18 10:10"),
@@ -85,7 +85,7 @@ class TaskTest {
     @DisplayName("Add Valid Task BVA 1")
     @Order(5)
     void testBVA_0() throws ParseException {
-        var task = new Task(
+        Task task = new Task(
                 "T",
                 Task.getDateFormat().parse("2024-03-29 10:10"),
                 Task.getDateFormat().parse("2024-03-30 10:10"),
@@ -102,7 +102,7 @@ class TaskTest {
     @DisplayName("Add Valid Task BVA 2")
     @Order(6)
     void testBVA_1() throws ParseException {
-        var task = new Task(
+        Task task = new Task(
                 "Acesta este un task valid",
                 Task.getDateFormat().parse("1971-01-01 10:10"),
                 Task.getDateFormat().parse("1971-01-02 10:10"),
@@ -119,7 +119,7 @@ class TaskTest {
     @DisplayName("Add Invalid Task BVA 1")
     @Order(7)
     void testBVA_2() throws ParseException {
-        var task = new Task(
+        Task task = new Task(
                 null,
                 Task.getDateFormat().parse("2024-03-29 10:10"),
                 Task.getDateFormat().parse("2024-03-30 10:10"),

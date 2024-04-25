@@ -11,6 +11,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 class TaskServiceTest {
@@ -34,7 +35,7 @@ class TaskServiceTest {
         Date start = formatter.parse("2022-04-02 12:00");
         Date end = formatter.parse("2022-04-01 12:00");
         Iterable<Task> tasks = service.filterTasks(observableList, start, end);
-        List<Task> filtered = StreamSupport.stream(tasks.spliterator(),false).toList();
+        List<Task> filtered = StreamSupport.stream(tasks.spliterator(),false).collect(Collectors.toList());
         Assertions.assertEquals(0, filtered.size());
     }
 
@@ -45,7 +46,7 @@ class TaskServiceTest {
         Date start = formatter.parse("2022-04-02 12:00");
         Date end = formatter.parse("2022-04-01 12:00");
         Iterable<Task> tasks = service.filterTasks(observableList, start, end);
-        List<Task> filtered = StreamSupport.stream(tasks.spliterator(),false).toList();
+        List<Task> filtered = StreamSupport.stream(tasks.spliterator(),false).collect(Collectors.toList());
         Assertions.assertEquals(filtered.size(),0);
     }
 
@@ -58,7 +59,7 @@ class TaskServiceTest {
         Date start = formatter.parse("2022-04-02 12:00");
         Date end = formatter.parse("2022-04-03 12:00");
         Iterable<Task> tasks = service.filterTasks(observableList, start, end);
-        List<Task> filtered = StreamSupport.stream(tasks.spliterator(),false).toList();
+        List<Task> filtered = StreamSupport.stream(tasks.spliterator(),false).collect(Collectors.toList());
         Assertions.assertEquals(filtered.size(),0);
     }
 
@@ -73,7 +74,7 @@ class TaskServiceTest {
         Date start = formatter.parse("2022-04-02 12:00");
         Date end = formatter.parse("2022-04-03 12:00");
         Iterable<Task> tasks = service.filterTasks(observableList, start, end);
-        List<Task> filtered = StreamSupport.stream(tasks.spliterator(),false).toList();
+        List<Task> filtered = StreamSupport.stream(tasks.spliterator(),false).collect(Collectors.toList());
         Assertions.assertEquals(filtered.size(),0);
     }
 
@@ -88,7 +89,7 @@ class TaskServiceTest {
         Date start = formatter.parse("2022-04-02 12:00");
         Date end = formatter.parse("2022-04-04 12:00");
         Iterable<Task> tasks = service.filterTasks(observableList, start, end);
-        List<Task> filtered = StreamSupport.stream(tasks.spliterator(),false).toList();
+        List<Task> filtered = StreamSupport.stream(tasks.spliterator(),false).collect(Collectors.toList());
         Assertions.assertEquals(filtered.size(),1);
         Assertions.assertEquals(filtered.get(0),t1);
     }
@@ -104,7 +105,7 @@ class TaskServiceTest {
         Date start = formatter.parse("2022-04-02 12:00");
         Date end = formatter.parse("2022-04-04 12:30");
         Iterable<Task> tasks = service.filterTasks(observableList, start, end);
-        List<Task> filtered = StreamSupport.stream(tasks.spliterator(),false).toList();
+        List<Task> filtered = StreamSupport.stream(tasks.spliterator(),false).collect(Collectors.toList());
         Assertions.assertEquals(filtered.size(),1);
         Assertions.assertEquals(filtered.get(0),t1);
     }
