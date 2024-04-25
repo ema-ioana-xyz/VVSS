@@ -16,6 +16,12 @@ public class TasksService {
     private ArrayTaskList tasks;
     private static final Logger log = Logger.getLogger(TasksService.class.getName());
 
+    public TasksService(){}
+
+    public void setTasks(ArrayTaskList tasks) {
+        this.tasks = tasks;
+    }
+
     public TasksService(ArrayTaskList tasks){
         this.tasks = tasks;
     }
